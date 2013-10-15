@@ -60,5 +60,64 @@ Device (RMDT)\n
         Release(RTMX)\n
         Return(Local0)\n
     }\n
+    // Helper functions for multiple params at one time\n
+    Method (P1, 1, NotSerialized) { PUSH(Arg0) }\n
+    Method (P2, 2, Serialized)\n
+    {\n
+        Name (TEMP, Package(2) { })\n
+        Store(Arg0, Index(TEMP, 0))\n
+        Store(Arg1, Index(TEMP, 1))\n
+        PUSH(TEMP)\n
+    }\n
+    Method (P3, 3, Serialized)\n
+    {\n
+        Name (TEMP, Package(3) { })\n
+        Store(Arg0, Index(TEMP, 0))\n
+        Store(Arg1, Index(TEMP, 1))\n
+        Store(Arg2, Index(TEMP, 2))\n
+        PUSH(TEMP)\n
+    }\n
+    Method (P4, 4, Serialized)\n
+    {\n
+        Name (TEMP, Package(4) { })\n
+        Store(Arg0, Index(TEMP, 0))\n
+        Store(Arg1, Index(TEMP, 1))\n
+        Store(Arg2, Index(TEMP, 2))\n
+        Store(Arg3, Index(TEMP, 3))\n
+        PUSH(TEMP)\n
+    }\n
+    Method (P5, 5, Serialized)\n
+    {\n
+        Name (TEMP, Package(5) { })\n
+        Store(Arg0, Index(TEMP, 0))\n
+        Store(Arg1, Index(TEMP, 1))\n
+        Store(Arg2, Index(TEMP, 2))\n
+        Store(Arg3, Index(TEMP, 3))\n
+        Store(Arg4, Index(TEMP, 4))\n
+        PUSH(TEMP)\n
+    }\n
+    Method (P6, 6, Serialized)\n
+    {\n
+        Name (TEMP, Package(6) { })\n
+        Store(Arg0, Index(TEMP, 0))\n
+        Store(Arg1, Index(TEMP, 1))\n
+        Store(Arg2, Index(TEMP, 2))\n
+        Store(Arg3, Index(TEMP, 3))\n
+        Store(Arg4, Index(TEMP, 4))\n
+        Store(Arg5, Index(TEMP, 5))\n
+        PUSH(TEMP)\n
+    }\n
+    Method (P7, 7, Serialized)\n
+    {\n
+        Name (TEMP, Package(7) { })\n
+        Store(Arg0, Index(TEMP, 0))\n
+        Store(Arg1, Index(TEMP, 1))\n
+        Store(Arg2, Index(TEMP, 2))\n
+        Store(Arg3, Index(TEMP, 3))\n
+        Store(Arg4, Index(TEMP, 4))\n
+        Store(Arg5, Index(TEMP, 5))\n
+        Store(Arg6, Index(TEMP, 6))\n
+        PUSH(TEMP)\n
+    }\n
 }\n
 end;

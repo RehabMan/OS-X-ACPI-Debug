@@ -127,7 +127,7 @@ IOReturn ACPIDebug::OnTimerEvent()
             static char buf[2048];
             // got a valid object, format and print it...
             FormatDebugString(debug, buf, sizeof(buf)/sizeof(buf[0]));
-            IOLog("ACPIDebug log: %s\n", buf);
+            IOLog("ACPIDebug: %s\n", buf);
         }
     }
 
@@ -144,7 +144,8 @@ IOReturn ACPIDebug::OnTimerEvent()
  * FormatDebugString
  ******************************************************************************/
 
-static size_t FormatDebugString(OSObject* debug, char* buf, size_t buf_size)
+//static
+size_t ACPIDebug::FormatDebugString(OSObject* debug, char* buf, size_t buf_size)
 {
     // determine type of object
     // for integer: just print the value
@@ -158,7 +159,7 @@ static size_t FormatDebugString(OSObject* debug, char* buf, size_t buf_size)
     int n;
     if (OSNumber* num = OSDynamicCast(OSNumber, debug))
     {
-        n = snprintf(buf, left, "%llx", num->unsigned64BitValue());
+        n = snprintf(buf, left, "0x%llx", num->unsigned64BitValue());
         left -= n; buf += n;
     }
     else if (OSString* str = OSDynamicCast(OSString, debug))
@@ -171,10 +172,10 @@ static size_t FormatDebugString(OSObject* debug, char* buf, size_t buf_size)
         n = snprintf(buf, buf_size, "{ ");
         left -= n; buf += n;
         int count = data->getLength();
-        const char* p = static_cast<const char*>(data->getBytesNoCopy());
+        const uint8_t* p = static_cast<const uint8_t*>(data->getBytesNoCopy());
         for (int i = 0; i < count; i++)
         {
-            n = snprintf(buf, left, "%02x, ", p[i]);
+            n = snprintf(buf, left, "0x%02x, ", p[i]);
             left -= n; buf += n;
         }
         n = snprintf(buf, left, "}");
@@ -193,6 +194,7 @@ static size_t FormatDebugString(OSObject* debug, char* buf, size_t buf_size)
             left -= n; buf += n;
         }
         n = snprintf(buf, left, "}");
+        left -= n; buf += n;
     }
     else
     {
