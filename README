@@ -1,0 +1,3 @@
+Written by RehabMan 2013-10-15
+
+Advanced Configuration and Power Interface (ACPI) based kernel extension for debugging DSDT code.  This kext allows one to easily trace variables and execution path from DSDT (or SSDT) code.
