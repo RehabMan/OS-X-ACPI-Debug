@@ -128,6 +128,7 @@ IOReturn ACPIDebug::OnTimerEvent()
             // got a valid object, format and print it...
             FormatDebugString(debug, buf, sizeof(buf)/sizeof(buf[0]));
             IOLog("ACPIDebug: %s\n", buf);
+            debug->release();
         }
     }
 
