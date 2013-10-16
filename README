@@ -1,3 +1,49 @@
 Written by RehabMan 2013-10-15
 
 Advanced Configuration and Power Interface (ACPI) based kernel extension for debugging DSDT code.  This kext allows one to easily trace variables and execution path from DSDT (or SSDT) code.
+
+Installation:
+
+To use it you must install the two components that make up the software.  First of all, you must patch your DSDT to add the RMDT (RehabMan Debug Trace) device.  The presence of this device allows the kext to load.  Apply the debug.txt patch via MaciASL.  You can also add this repo as a MaciASL "source" in MaciASL preferences: http://raw.github.com/RehabMan/OS-X-ACPI-Debug/master.
+
+Second, you must build and install the kext (ACPIDebug.kext).  You can build it at the command line with 'make' and install it with Kext Wizard (or your favorite kext installer), or you can install it at the command line with 'make install'.  Of course, you can also build it with Xcode.  I'm using Xcode 5.0 at the moment.
+
+Third, add code to your DSDT to where you wish to cause trace messages to system.log (call \RMDT.PUSH).
+
+
+Using the tracing facility:
+
+The DSDT patch adds the RMDT device at the root of your DSDT.  There are several methods you can use from within the DSDT to "push" debug output to the kext:
+
+PUSH: Takes a single parameter (of any type, including Packages and Buffers).  The contents of this parameter will be displayed by the kext to system.log.
+
+P1, P2 through P7.  P1 does exactly the same as PUSH.  Each of these utility methods takes 1 to 7 parameters (according to the name of the method).  This makes it easy to provide descriptions for your data or have multiple variables displayed on one line in system.log.
+
+The other methods COUN, and FTCH are part of the implementation.  These methods are called by ACPIDebug.kext to pull information.
+
+
+Examples:
+
+\RMDT.PUSH("Entering _WAK")
+output: ACPIDebug: "Entering _WAK"
+
+\RMDT.PUSH(Local0)
+example output: ACPIDebug: 0x10
+
+\RMDT.P2("Local0", Local0)
+example output: ACPIDebug: { "Local0", 0x10, }
+
+\RMDT.P4("OSFL() returns", OSFL(), "OSVR is", OSVR)
+example output: ACPIDebug: { "OSFL() returns", 0xABC, "OSVR is", 0x60, }
+
+Name(TEST, Buffer() { 128, 255, 10, 127 }
+\RMDT.P1(TEST)
+example output: ACPIDebug: { 0x80, 0xFF, 0x0A, 0x7F, }
+
+Name(TEST, Package() { Package() { 128, 255 }, Package() { 1, 2, 3, 10 })
+example output: ACPIDebug: { { 0x80, 0xFF }, { 0x1, 0x2, 0x3, 0xA }, }
+
+
+How it works:
+
+Internally the RMDT device maintains a ring buffer of objects added via PUSH (ring buffer uses a Package).  The ring buffer size is 256.  The ACPIDebug.kext polls the RMDT device (via FTCH) every 100ms to see if any objects are available for printing.  If they are they are pulled from the ring buffer and output to system.log (it is a FIFO ring).  Objects added to the ring buffer when it is full are ignored.
