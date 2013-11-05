@@ -1,0 +1,25 @@
+#Maintained by: RehabMan for: Laptop Patches
+#debug_extern.txt
+
+#
+# External declarations for debugging in SSDTs
+#
+# Use in conjunction with ACPIDebug.kext
+#
+# EXPERIMENTAL
+#
+# Written by RehabMan 2013-11-05
+#
+
+into definitionblock code_regex . insert
+begin
+    External (RMDT, DeviceObj)\n
+    External (RMDT.PUSH, MethodObj)\n
+    External (RMDT.P1, MethodObj)\n
+    External (RMDT.P2, MethodObj)\n
+    External (RMDT.P3, MethodObj)\n
+    External (RMDT.P4, MethodObj)\n
+    External (RMDT.P5, MethodObj)\n
+    External (RMDT.P6, MethodObj)\n
+    External (RMDT.P7, MethodObj)\n
+end;

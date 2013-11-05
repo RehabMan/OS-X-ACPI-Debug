@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C4B238814598AD20080D960 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C4B238614598AD20080D960 /* InfoPlist.strings */; };
+		846754981829A75D004F3392 /* debug_extern.txt in Resources */ = {isa = PBXBuildFile; fileRef = 846754971829A75D004F3392 /* debug_extern.txt */; };
 		849921901600F4FC00CCDF3B /* ACPIDebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8499218E1600F4FC00CCDF3B /* ACPIDebug.cpp */; };
 		849921911600F4FC00CCDF3B /* ACPIDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 8499218F1600F4FC00CCDF3B /* ACPIDebug.h */; };
 		84C56F49180DEF1400775290 /* debug.txt in Resources */ = {isa = PBXBuildFile; fileRef = 84C56F48180DEF1400775290 /* debug.txt */; };
@@ -23,6 +24,7 @@
 		0C4B238714598AD20080D960 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0C4B238D14598AD20080D960 /* ACPIDebug-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "ACPIDebug-Prefix.pch"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		844778DD16E7FD2100B27895 /* makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; lineEnding = 0; path = makefile; sourceTree = SOURCE_ROOT; usesTabs = 1; };
+		846754971829A75D004F3392 /* debug_extern.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = debug_extern.txt; sourceTree = "<group>"; };
 		8499218E1600F4FC00CCDF3B /* ACPIDebug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = ACPIDebug.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		8499218F1600F4FC00CCDF3B /* ACPIDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ACPIDebug.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		84C56F48180DEF1400775290 /* debug.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = debug.txt; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 			children = (
 				84C56F4E180DF04900775290 /* .maciasl */,
 				84C56F48180DEF1400775290 /* debug.txt */,
+				846754971829A75D004F3392 /* debug_extern.txt */,
 			);
 			name = DSDT;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			files = (
 				84C56F4F180DF04900775290 /* .maciasl in Resources */,
 				84C56F4D180DEF3100775290 /* README in Resources */,
+				846754981829A75D004F3392 /* debug_extern.txt in Resources */,
 				84C56F49180DEF1400775290 /* debug.txt in Resources */,
 				0C4B238814598AD20080D960 /* InfoPlist.strings in Resources */,
 				84C56F4C180DEF3100775290 /* License.md in Resources */,
