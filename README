@@ -11,6 +11,11 @@ Second, you must build and install the kext (ACPIDebug.kext).  You can build it 
 Third, add code to your DSDT to where you wish to cause trace messages to system.log (call \RMDT.PUSH).
 
 
+Downloads and more information:
+
+Please see this thread on tonymacx86.com: http://www.tonymacx86.com/dsdt/111868-dsdt-debugging-tracing-system-log.html
+
+
 Using the tracing facility:
 
 The DSDT patch adds the RMDT device at the root of your DSDT.  There are several methods you can use from within the DSDT to "push" debug output to the kext:
