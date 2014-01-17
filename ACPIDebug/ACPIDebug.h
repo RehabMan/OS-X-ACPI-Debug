@@ -50,15 +50,20 @@ public:
     virtual IOService *probe(IOService *provider, SInt32 *score);
     virtual bool start(IOService *provider);
 	virtual void stop(IOService *provider);
+    virtual IOReturn message( UInt32 type, IOService * provider, void * argument);
+    virtual IOReturn setProperties(OSObject* props);
     
 private:
 	IOACPIPlatformDevice*   m_pDevice;
     IOWorkLoop*             m_pWorkLoop;
 	IOTimerEventSource*     m_pTimer;
     int                     m_nPollingInterval;
-    
+    IOCommandGate*          m_pCmdGate;
+   
     IOReturn OnTimerEvent(void);
+    void PrintTraces(void);
     static size_t FormatDebugString(OSObject* debug, char* buf, size_t buf_size);
+    IOReturn setPropertiesGated(OSObject* props);
 };
 
 #endif // __ACPIDebug__

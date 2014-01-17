@@ -38,6 +38,26 @@
 			<string>IOACPIPlatformDevice</string>
 			<key>PollingInterval</key>
 			<string>100</string>
+			<key>dbg0</key>
+			<integer>0</integer>
+			<key>dbg1</key>
+			<integer>0</integer>
+			<key>dbg2</key>
+			<integer>0</integer>
+			<key>dbg3</key>
+			<integer>0</integer>
+			<key>dbg4</key>
+			<integer>0</integer>
+			<key>dbg5</key>
+			<integer>0</integer>
+			<key>dbg6</key>
+			<integer>0</integer>
+			<key>dbg7</key>
+			<integer>0</integer>
+			<key>dbg8</key>
+			<integer>0</integer>
+			<key>dbg9</key>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>NSHumanReadableCopyright</key>

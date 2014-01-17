@@ -35,6 +35,7 @@ bool ACPIDebug::init(OSDictionary *dict)
     m_pDevice = NULL;
     m_pWorkLoop = NULL;
     m_pTimer = NULL;
+    m_pCmdGate = NULL;
     
     m_nPollingInterval = 100;
 	if (OSNumber* num = OSDynamicCast(OSNumber, dict->getObject("PollingInterval")))
@@ -91,6 +92,11 @@ bool ACPIDebug::start(IOService *provider)
         return false;
 	if (kIOReturnSuccess != m_pWorkLoop->addEventSource(m_pTimer))
         return false;
+
+    // command gate to route setProperties through workloop
+    m_pCmdGate = IOCommandGate::commandGate(this);
+    if (m_pCmdGate)
+        m_pWorkLoop->addEventSource(m_pCmdGate);
     
 	IOLog("ACPIDebug: Version 0.1.0 starting\n");
     
@@ -102,9 +108,22 @@ bool ACPIDebug::start(IOService *provider)
 }
 
 /******************************************************************************
- * ACPIDebug::OnTimerEvent
+ * ACPIDebug::message (handling Notify)
  ******************************************************************************/
-IOReturn ACPIDebug::OnTimerEvent()
+IOReturn ACPIDebug::message(UInt32 type, IOService * provider, void * argument)
+{
+	if (type == kIOACPIMessageDeviceNotification)
+	{
+        IOLog("ACPIDebug::message(%d, %p, %p)\n", type, provider, argument);
+        PrintTraces();
+	}
+	return super::message(type, provider, argument);
+}
+
+/******************************************************************************
+ * ACPIDebug::PrintTraces
+ ******************************************************************************/
+void ACPIDebug::PrintTraces()
 {
     for (;;)
     {
@@ -131,6 +150,15 @@ IOReturn ACPIDebug::OnTimerEvent()
             debug->release();
         }
     }
+}
+
+/******************************************************************************
+ * ACPIDebug::OnTimerEvent
+ ******************************************************************************/
+IOReturn ACPIDebug::OnTimerEvent()
+{
+    //REVIEW: timer may now be unecessary
+    PrintTraces();
 
     if (NULL != m_pTimer)
     {
@@ -144,8 +172,6 @@ IOReturn ACPIDebug::OnTimerEvent()
 /******************************************************************************
  * FormatDebugString
  ******************************************************************************/
-
-//static
 size_t ACPIDebug::FormatDebugString(OSObject* debug, char* buf, size_t buf_size)
 {
     // determine type of object
@@ -220,6 +246,13 @@ void ACPIDebug::stop(IOService *provider)
         m_pTimer->release();
         m_pTimer = NULL;
     }
+    if (NULL != m_pCmdGate)
+    {
+        m_pWorkLoop->removeEventSource(m_pCmdGate);
+        m_pCmdGate->release();
+        m_pCmdGate = NULL;
+    }
+    
     if (NULL != m_pWorkLoop)
     {
         m_pWorkLoop->release();
@@ -227,5 +260,50 @@ void ACPIDebug::stop(IOService *provider)
     }
 	
     super::stop(provider);
+}
+
+/******************************************************************************
+ * ACPIDebug::setProperties
+ ******************************************************************************/
+IOReturn ACPIDebug::setProperties(OSObject* props)
+{
+    if (m_pCmdGate)
+    {
+        // syncronize through workloop...
+        IOReturn result = m_pCmdGate->runAction(OSMemberFunctionCast(IOCommandGate::Action, this, &ACPIDebug::setPropertiesGated), props);
+        if (kIOReturnSuccess != result)
+            return result;
+    }
+    return kIOReturnSuccess;
+}
+
+/******************************************************************************
+ * ACPIDebug::setPropertiesGated
+ ******************************************************************************/
+IOReturn ACPIDebug::setPropertiesGated(OSObject* props)
+{
+    OSDictionary* dict = OSDynamicCast(OSDictionary, props);
+    if (!dict)
+        return kIOReturnSuccess;
+    
+    for (int i = 0; i < 10; i++)
+    {
+        const char kTriggerFormat[] = "dbg%d";
+        const char kTargetFormat[] = "DBG%d";
+        char buf[16];
+        snprintf(buf, sizeof(buf), kTriggerFormat, i);
+        if (OSNumber* num = OSDynamicCast(OSNumber, dict->getObject(buf)))
+        {
+            snprintf(buf, sizeof(buf), kTargetFormat, i);
+            IOReturn result = m_pDevice->evaluateObject(buf, NULL, (OSObject**)&num, 1);
+            if (kIOReturnSuccess != result)
+            {
+                IOLog("ACPIDebug evaluateObject(\"%s\") failed (%x)\n", buf, result);
+            }
+            //num->release();
+        }
+    }
+    
+    return kIOReturnSuccess;
 }
 

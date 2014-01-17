@@ -34,6 +34,7 @@ Device (RMDT)\n
             Store(Local0, HEAD)\n
         }\n
         Release(RTMX)\n
+        Notify(RMDT, 0x80)\n
     }\n
     // FTCH: Used by ACPIDebug.kext to fetch an item from RING\n
     Method (FTCH, 0, NotSerialized)\n
