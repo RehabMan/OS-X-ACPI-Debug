@@ -103,5 +103,5 @@ You could, of course, output any other DSDT data you wanted to in that method.
 In order to trigger the method, set the 'dbg0' property with ioio:
 
 # in Terminal
-ioio -s org_rehabman_ACPIDebug 5
+ioio -s org_rehabman_ACPIDebug dbg0 5
 
