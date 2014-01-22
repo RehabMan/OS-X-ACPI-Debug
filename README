@@ -13,16 +13,19 @@ Third, add code to your DSDT to where you wish to cause trace messages to system
 
 Change Log:
 
+2013-01-17
+
+- added ability to force calls into DBGx methods in RMDT device via 'ioio' utility
 2013-10-15
 
 - initial release
 
-2013-01-17
-
-- added ability to force calls into DBGx methods in RMDT device via 'ioio' utility
-
 
 Downloads and more information:
+
+
+Downloads are available on Bitbucket: https://bitbucket.org/RehabMan/os-x-acpi-debug/downloads
+
 
 Please see this thread on tonymacx86.com: http://www.tonymacx86.com/dsdt/111868-dsdt-debugging-tracing-system-log.html
 
