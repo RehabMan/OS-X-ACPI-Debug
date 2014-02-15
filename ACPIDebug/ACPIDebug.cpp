@@ -114,7 +114,7 @@ IOReturn ACPIDebug::message(UInt32 type, IOService * provider, void * argument)
 {
 	if (type == kIOACPIMessageDeviceNotification)
 	{
-        IOLog("ACPIDebug::message(%d, %p, %p)\n", type, provider, argument);
+        IOLog("ACPIDebug::Debug Log(%d, %p, %p)\n", type, provider, argument);
         PrintTraces();
 	}
 	return super::message(type, provider, argument);
