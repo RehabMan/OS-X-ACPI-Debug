@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0C4B238814598AD20080D960 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C4B238614598AD20080D960 /* InfoPlist.strings */; };
-		846754981829A75D004F3392 /* debug_extern.txt in Resources */ = {isa = PBXBuildFile; fileRef = 846754971829A75D004F3392 /* debug_extern.txt */; };
 		849921901600F4FC00CCDF3B /* ACPIDebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8499218E1600F4FC00CCDF3B /* ACPIDebug.cpp */; };
 		849921911600F4FC00CCDF3B /* ACPIDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 8499218F1600F4FC00CCDF3B /* ACPIDebug.h */; };
-		84C56F49180DEF1400775290 /* debug.txt in Resources */ = {isa = PBXBuildFile; fileRef = 84C56F48180DEF1400775290 /* debug.txt */; };
 		84C56F4C180DEF3100775290 /* License.md in Resources */ = {isa = PBXBuildFile; fileRef = 84C56F4A180DEF3100775290 /* License.md */; };
 		84C56F4D180DEF3100775290 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 84C56F4B180DEF3100775290 /* README */; };
 		84C56F4F180DF04900775290 /* .maciasl in Resources */ = {isa = PBXBuildFile; fileRef = 84C56F4E180DF04900775290 /* .maciasl */; };
@@ -31,6 +29,10 @@
 		84C56F4A180DEF3100775290 /* License.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.md; sourceTree = "<group>"; };
 		84C56F4B180DEF3100775290 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		84C56F4E180DF04900775290 /* .maciasl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .maciasl; sourceTree = "<group>"; usesTabs = 1; };
+		84FFE84419210C0A00A1976E /* instrument_WAK_PTS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = instrument_WAK_PTS.txt; sourceTree = "<group>"; };
+		84FFE84619210C7F00A1976E /* instrument_Qxx.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = instrument_Qxx.txt; sourceTree = "<group>"; };
+		84FFE84819210C8B00A1976E /* instrument_Lxx.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = instrument_Lxx.txt; sourceTree = "<group>"; };
+		84FFE84A19210CE000A1976E /* instrument.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = instrument.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,9 +106,13 @@
 		840D2E84180DF09D004F6FB9 /* DSDT */ = {
 			isa = PBXGroup;
 			children = (
+				84FFE84A19210CE000A1976E /* instrument.sh */,
 				84C56F4E180DF04900775290 /* .maciasl */,
 				84C56F48180DEF1400775290 /* debug.txt */,
 				846754971829A75D004F3392 /* debug_extern.txt */,
+				84FFE84419210C0A00A1976E /* instrument_WAK_PTS.txt */,
+				84FFE84619210C7F00A1976E /* instrument_Qxx.txt */,
+				84FFE84819210C8B00A1976E /* instrument_Lxx.txt */,
 			);
 			name = DSDT;
 			sourceTree = "<group>";
@@ -176,8 +182,6 @@
 			files = (
 				84C56F4F180DF04900775290 /* .maciasl in Resources */,
 				84C56F4D180DEF3100775290 /* README in Resources */,
-				846754981829A75D004F3392 /* debug_extern.txt in Resources */,
-				84C56F49180DEF1400775290 /* debug.txt in Resources */,
 				0C4B238814598AD20080D960 /* InfoPlist.strings in Resources */,
 				84C56F4C180DEF3100775290 /* License.md in Resources */,
 			);

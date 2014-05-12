@@ -1,0 +1,20 @@
+#Maintained by: RehabMan for: ACPIDebug
+#instrument_WAK_PTS.txt
+
+# Apply this patch to get debug output at beginning and end of _PTS/_WAK
+
+# instrument _PTS and _WAK
+into method label _WAK code_regex ([\s\S]*)(Return[\s\S]*) replace_matched
+begin
+\\rmdt.p2("_WAK enter", Arg0)\n
+%1\n
+\\rmdt.p1("_WAK exit")\n
+%2\n
+end;
+
+into method label _PTS code_regex ([\s\S]*) replace_matched
+begin
+\\rmdt.p2("_PTS enter", Arg0)\n
+%1\n
+\\rmdt.p1("_PTS exit")\n
+end;

@@ -1,4 +1,4 @@
-#Maintained by: RehabMan for: Laptop Patches
+#Maintained by: RehabMan for: ACPIDebug
 #debug.txt
 
 #
