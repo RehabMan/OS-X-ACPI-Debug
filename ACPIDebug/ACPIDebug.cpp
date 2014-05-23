@@ -22,6 +22,15 @@
 #include <IOKit/IOCommandGate.h>
 #include "ACPIDebug.h"
 
+//REVIEW: avoids problem with Xcode 5.1.0 where -dead_strip eliminates these required symbols
+#include <libkern/OSKextLib.h>
+void* _org_rehabman_dontstrip_[] =
+{
+    (void*)&OSKextGetCurrentIdentifier,
+    (void*)&OSKextGetCurrentLoadTag,
+    (void*)&OSKextGetCurrentVersionString,
+};
+
 OSDefineMetaClassAndStructors(org_rehabman_ACPIDebug, IOService)
 
 /******************************************************************************
