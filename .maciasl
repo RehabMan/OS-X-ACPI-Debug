@@ -3,4 +3,5 @@ Add SSDT Debug Extern Declarations	debug_extern.txt
 Instrument _WAK/_PTS	instrument_WAK_PTS.txt
 Instrument EC Queries	instrument_Qxx.txt
 Instrument GPE Events	instrument_Lxx.txt
+Instrument LID0._LID	instrument_LID.txt
 Remove RMDT debugging code	remove.txt

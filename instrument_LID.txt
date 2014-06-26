@@ -1,0 +1,19 @@
+#Maintained by: RehabMan for: ACPIDebug
+#instrument_LID.txt
+
+# Use this patch to determine if _LID is being called and what it is
+# returning.
+#
+# Used for debugging lid triggered sleep.
+
+into method label _LID parent_label LID0 set_label begin LIDX end;
+into device label LID0 code_regex . insert
+begin
+Method (_LID, 0, NotSerialized)\n
+{\n
+    \rmdt.p1("LID0._LID enter")\n
+    Store(LIDX(), Local0)\n
+    \rmdt.p2("LID0._LID returning", Local0)\n
+    Return(Local0)\n
+}\n
+end;
