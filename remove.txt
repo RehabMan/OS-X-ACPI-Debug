@@ -1,0 +1,9 @@
+#Maintained by: RehabMan for: ACPIDebug
+#remove.txt
+
+# remove debugging code
+
+into device label RMDT remove_entry;
+into_all all code_regex .*\\RMDT\..* removeall_matched;
+into_all all code_regex .*\\rmdt\..* removeall_matched;
+into_all all code_regex External\s*\(RMDT.*Obj\) removeall_matched;
