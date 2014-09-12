@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0C4B238814598AD20080D960 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C4B238614598AD20080D960 /* InfoPlist.strings */; };
 		848A3B5E195BD6DF00FEC26D /* remove.txt in Resources */ = {isa = PBXBuildFile; fileRef = 848A3B5D195BD6DF00FEC26D /* remove.txt */; };
+		849702081950863E005C5A0C /* instrument_LID.txt in Resources */ = {isa = PBXBuildFile; fileRef = 849702071950863E005C5A0C /* instrument_LID.txt */; };
 		849921901600F4FC00CCDF3B /* ACPIDebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8499218E1600F4FC00CCDF3B /* ACPIDebug.cpp */; };
 		849921911600F4FC00CCDF3B /* ACPIDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 8499218F1600F4FC00CCDF3B /* ACPIDebug.h */; };
 		84C56F4C180DEF3100775290 /* License.md in Resources */ = {isa = PBXBuildFile; fileRef = 84C56F4A180DEF3100775290 /* License.md */; };
@@ -25,6 +26,7 @@
 		844778DD16E7FD2100B27895 /* makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; lineEnding = 0; path = makefile; sourceTree = SOURCE_ROOT; usesTabs = 1; };
 		846754971829A75D004F3392 /* debug_extern.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = debug_extern.txt; sourceTree = "<group>"; };
 		848A3B5D195BD6DF00FEC26D /* remove.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = remove.txt; sourceTree = "<group>"; };
+		849702071950863E005C5A0C /* instrument_LID.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = instrument_LID.txt; sourceTree = "<group>"; };
 		8499218E1600F4FC00CCDF3B /* ACPIDebug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = ACPIDebug.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		8499218F1600F4FC00CCDF3B /* ACPIDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ACPIDebug.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		84C56F48180DEF1400775290 /* debug.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = debug.txt; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				84FFE84419210C0A00A1976E /* instrument_WAK_PTS.txt */,
 				84FFE84619210C7F00A1976E /* instrument_Qxx.txt */,
 				84FFE84819210C8B00A1976E /* instrument_Lxx.txt */,
+				849702071950863E005C5A0C /* instrument_LID.txt */,
 				848A3B5D195BD6DF00FEC26D /* remove.txt */,
 			);
 			name = DSDT;
@@ -159,7 +162,12 @@
 		0C4B237314598AD10080D960 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
+				TargetAttributes = {
+					0C4B237D14598AD20080D960 = {
+						DevelopmentTeam = 3U537Y3635;
+					};
+				};
 			};
 			buildConfigurationList = 0C4B237614598AD10080D960 /* Build configuration list for PBXProject "ACPIDebug" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -188,6 +196,7 @@
 				0C4B238814598AD20080D960 /* InfoPlist.strings in Resources */,
 				84C56F4C180DEF3100775290 /* License.md in Resources */,
 				848A3B5E195BD6DF00FEC26D /* remove.txt in Resources */,
+				849702081950863E005C5A0C /* instrument_LID.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,13 +291,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				CURRENT_PROJECT_VERSION = 0.1.2d1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ACPIDebug/ACPIDebug-Prefix.pch";
 				INFOPLIST_FILE = "ACPIDebug/ACPIDebug-Info.plist";
 				MODULE_NAME = com.rehabman.driver.ACPIDebug;
-				MODULE_VERSION = 1.0.0d1;
+				MODULE_VERSION = 0.1.2;
 				PRODUCT_NAME = ACPIDebug;
+				PROVISIONING_PROFILE = "";
 				STRIP_INSTALLED_PRODUCT = YES;
 			};
 			name = Debug;
@@ -297,13 +307,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				CURRENT_PROJECT_VERSION = 0.1.2d1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ACPIDebug/ACPIDebug-Prefix.pch";
 				INFOPLIST_FILE = "ACPIDebug/ACPIDebug-Info.plist";
 				MODULE_NAME = com.rehabman.driver.ACPIDebug;
-				MODULE_VERSION = 1.0.0d1;
+				MODULE_VERSION = 0.1.2;
 				PRODUCT_NAME = ACPIDebug;
+				PROVISIONING_PROFILE = "";
 				STRIP_INSTALLED_PRODUCT = YES;
 			};
 			name = Release;
