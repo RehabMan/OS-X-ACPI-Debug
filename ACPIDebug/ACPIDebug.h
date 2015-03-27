@@ -59,6 +59,7 @@ private:
 	IOTimerEventSource*     m_pTimer;
     int                     m_nPollingInterval;
     IOCommandGate*          m_pCmdGate;
+    IOLock*                 m_pLock;
    
     IOReturn OnTimerEvent(void);
     void PrintTraces(void);

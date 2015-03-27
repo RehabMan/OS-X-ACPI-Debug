@@ -45,6 +45,7 @@ bool ACPIDebug::init(OSDictionary *dict)
     m_pWorkLoop = NULL;
     m_pTimer = NULL;
     m_pCmdGate = NULL;
+    m_pLock = NULL;
     
     m_nPollingInterval = 100;
 	if (OSNumber* num = OSDynamicCast(OSNumber, dict->getObject("PollingInterval")))
@@ -86,6 +87,10 @@ bool ACPIDebug::start(IOService *provider)
     
     m_pDevice = OSDynamicCast(IOACPIPlatformDevice, provider);
     if (NULL == m_pDevice || !super::start(provider))
+        return false;
+
+    m_pLock = IOLockAlloc();
+    if (!m_pLock)
         return false;
 
     // need a work loop to send timer events to
@@ -134,6 +139,8 @@ IOReturn ACPIDebug::message(UInt32 type, IOService * provider, void * argument)
  ******************************************************************************/
 void ACPIDebug::PrintTraces()
 {
+    IOLockLock(m_pLock);
+
     for (;;)
     {
         // see if there are any trace items in the RING
@@ -159,6 +166,8 @@ void ACPIDebug::PrintTraces()
             debug->release();
         }
     }
+
+    IOLockUnlock(m_pLock);
 }
 
 /******************************************************************************
@@ -211,7 +220,7 @@ size_t ACPIDebug::FormatDebugString(OSObject* debug, char* buf, size_t buf_size)
         const uint8_t* p = static_cast<const uint8_t*>(data->getBytesNoCopy());
         for (int i = 0; i < count; i++)
         {
-            n = snprintf(buf, left, "0x%02x, ", p[i]);
+            n = snprintf(buf, left, "%02x ", p[i]);
             left -= n; buf += n;
         }
         n = snprintf(buf, left, "}");
@@ -266,6 +275,11 @@ void ACPIDebug::stop(IOService *provider)
     {
         m_pWorkLoop->release();
         m_pWorkLoop = NULL;
+    }
+    if (NULL != m_pLock)
+    {
+        IOLockFree(m_pLock);
+        m_pLock = NULL;
     }
 	
     super::stop(provider);
