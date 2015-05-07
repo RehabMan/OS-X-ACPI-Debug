@@ -6,16 +6,23 @@ Installation:
 
 To use it you must install the two components that make up the software.  First of all, you must patch your DSDT to add the RMDT (RehabMan Debug Trace) device.  The presence of this device allows the kext to load.  Apply the debug.txt patch via MaciASL.  You can also add this repo as a MaciASL "source" in MaciASL preferences: http://raw.github.com/RehabMan/OS-X-ACPI-Debug/master.
 
-Second, you must build and install the kext (ACPIDebug.kext).  You can build it at the command line with 'make' and install it with Kext Wizard (or your favorite kext installer), or you can install it at the command line with 'make install'.  Of course, you can also build it with Xcode.  I'm using Xcode 5.0 at the moment.
+Second, you must install the kext (ACPIDebug.kext).  You can build it at the command line with 'make' and install it with Kext Wizard (or your favorite kext installer), or you can install it at the command line with 'make install'.  Of course, you can also build it with Xcode.  I'm using Xcode 5.0 at the moment.  You can also use my pre-built kext downloaded from bitbucket.  Links are provided below.
 
 Third, add code to your DSDT to where you wish to cause trace messages to system.log (call \RMDT.PUSH).
 
 
 Change Log:
 
+2015-05-07
+
+- fix minor thread sync bug that would cause a spurious 0x0 to be output
+
+
 2013-01-17
 
 - added ability to force calls into DBGx methods in RMDT device via 'ioio' utility
+
+
 2013-10-15
 
 - initial release
