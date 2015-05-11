@@ -7,14 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C4B238814598AD20080D960 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C4B238614598AD20080D960 /* InfoPlist.strings */; };
-		848A3B5E195BD6DF00FEC26D /* remove.txt in Resources */ = {isa = PBXBuildFile; fileRef = 848A3B5D195BD6DF00FEC26D /* remove.txt */; };
-		849702081950863E005C5A0C /* instrument_LID.txt in Resources */ = {isa = PBXBuildFile; fileRef = 849702071950863E005C5A0C /* instrument_LID.txt */; };
 		849921901600F4FC00CCDF3B /* ACPIDebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8499218E1600F4FC00CCDF3B /* ACPIDebug.cpp */; };
 		849921911600F4FC00CCDF3B /* ACPIDebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 8499218F1600F4FC00CCDF3B /* ACPIDebug.h */; };
-		84C56F4C180DEF3100775290 /* License.md in Resources */ = {isa = PBXBuildFile; fileRef = 84C56F4A180DEF3100775290 /* License.md */; };
-		84C56F4D180DEF3100775290 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 84C56F4B180DEF3100775290 /* README */; };
-		84C56F4F180DF04900775290 /* .maciasl in Resources */ = {isa = PBXBuildFile; fileRef = 84C56F4E180DF04900775290 /* .maciasl */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -191,12 +185,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84C56F4F180DF04900775290 /* .maciasl in Resources */,
-				84C56F4D180DEF3100775290 /* README in Resources */,
-				0C4B238814598AD20080D960 /* InfoPlist.strings in Resources */,
-				84C56F4C180DEF3100775290 /* License.md in Resources */,
-				848A3B5E195BD6DF00FEC26D /* remove.txt in Resources */,
-				849702081950863E005C5A0C /* instrument_LID.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
