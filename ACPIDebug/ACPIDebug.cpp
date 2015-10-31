@@ -126,9 +126,7 @@ bool ACPIDebug::start(IOService *provider)
     m_pCmdGate = IOCommandGate::commandGate(this);
     if (m_pCmdGate)
         m_pWorkLoop->addEventSource(m_pCmdGate);
-    
-	IOLog("ACPIDebug: Version 0.1.3 starting\n");
-    
+
     // call it once
     OnTimerEvent();
     
